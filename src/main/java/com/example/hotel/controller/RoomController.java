@@ -21,8 +21,23 @@ public class RoomController {
         return roomService.saveRoom(roomDTO);
     }
 
-    @GetMapping
+    @GetMapping //this method returns all the room did paging
     private Page<Room> getRoom(@RequestParam Integer page) {
-        return null;
+        return roomService.getRooms(page);
+    }
+
+    @GetMapping("/{id}") // this method returns the room by id
+    private Room getRoomById(@PathVariable Integer id) {
+        return roomService.getRoomById(id);
+    }
+
+    @PutMapping("/{id}") //this method updates the room
+    private String etidingRoom(@PathVariable Integer id, @RequestBody RoomDTO roomDTO) {
+        return roomService.editingRoom(id, roomDTO);
+    }
+
+    @DeleteMapping("/{id}") // this method deletes the room by id
+    private String deletingRoom(@PathVariable Integer id) {
+        return roomService.delete(id);
     }
 }
